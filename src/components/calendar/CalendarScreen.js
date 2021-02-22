@@ -7,6 +7,7 @@ import 'moment/locale/es'; // importacion para que se configure en español el c
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarEvent from './CalendarEvent';
+import CalendarModal from './CalendarModal';
 
 
 moment.locale('es');// Cambiamos el idioma al español con moment
@@ -77,6 +78,7 @@ const CalendarScreen = () => {
                         event: CalendarEvent
                     }}
                 />
+                <CalendarModal/>
             </div>
         </React.Fragment>
     )
