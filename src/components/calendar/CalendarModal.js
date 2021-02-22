@@ -22,7 +22,22 @@ const customStyles = {
 const CalendarModal = () => {
 
     const [ dateStart, setDateStart] = useState(now.toDate());
-    const [ dateEnd, setDateEnd ] = useState(nowPlus1.toDate())
+    const [ dateEnd, setDateEnd ] = useState(nowPlus1.toDate());
+    const [ formValues, setFormValues ] = useState({
+        title: 'Evento',
+        notes: '',
+        start: now.toDate(),
+        end: nowPlus1.toDate()
+    });
+
+    const { title, notes, start, end } = formValues
+
+    const handleInputChange = ({ target }) => {
+        setFormValues({
+            ...formValues,
+            [target.name]: target.value
+        });
+    }
 
     const closeModal = () => {
         
@@ -30,12 +45,23 @@ const CalendarModal = () => {
 
     const handleStartDateChange = (ev) => {
         setDateStart( ev );
-        console.log(ev);
+        setFormValues({
+            ...formValues,
+            start: ev
+        })
     }
 
     const handleEndDateChange = (ev) => {
         setDateEnd( ev );
-        console.log(ev);
+        setFormValues({
+            ...formValues,
+            end: ev
+        })
+    }
+
+    const handleSubmitForm = (ev) => {
+        ev.preventDefault();
+        console.log(formValues);
     }
 
     return (
@@ -51,7 +77,10 @@ const CalendarModal = () => {
             >
                 <h1> Nuevo evento </h1>
                 <hr />
-                <form className="container">
+                <form 
+                    className="container"
+                    onSubmit={ handleSubmitForm }
+                >
 
                     <div className="form-group">
                         <label>Fecha y hora inicio</label>
@@ -81,6 +110,8 @@ const CalendarModal = () => {
                             placeholder="Título del evento"
                             name="title"
                             autoComplete="off"
+                            value={ title }
+                            onChange={ handleInputChange }
                         />
                         <small id="emailHelp" className="form-text text-muted">Una descripción corta</small>
                     </div>
@@ -92,6 +123,8 @@ const CalendarModal = () => {
                             placeholder="Notas"
                             rows="5"
                             name="notes"
+                            value={ notes }
+                            onChange={ handleInputChange }
                         ></textarea>
                         <small id="emailHelp" className="form-text text-muted">Información adicional</small>
                     </div>
