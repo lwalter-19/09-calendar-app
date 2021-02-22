@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import CalendarApp from './CalendarApp';
 
 ReactDOM.render(
-  <App />,
+  <React.Fragment>
+    <CalendarApp/>
+  </React.Fragment>,
   document.getElementById('root')
 );
