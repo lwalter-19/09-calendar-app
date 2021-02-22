@@ -8,6 +8,8 @@ import 'moment/locale/es'; // importacion para que se configure en español el c
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarEvent from './CalendarEvent';
 import CalendarModal from './CalendarModal';
+import { useDispatch } from 'react-redux';
+import { uiOpenModal } from '../../actions/ui';
 
 
 moment.locale('es');// Cambiamos el idioma al español con moment
@@ -27,12 +29,13 @@ const events = [{
 }];
 
 const CalendarScreen = () => {
-
+   
+    const dispatch = useDispatch();
 
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month') 
 
     const onDoubleClick = (ev) => {  
-        console.log(ev)
+        dispatch(uiOpenModal());
     }
 
     const onSelectEvent = (ev) => {
