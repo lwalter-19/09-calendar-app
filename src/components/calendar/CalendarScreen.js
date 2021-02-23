@@ -8,7 +8,7 @@ import 'moment/locale/es'; // importacion para que se configure en español el c
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarEvent from './CalendarEvent';
 import CalendarModal from './CalendarModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
 import { eventSetActive } from '../../actions/events';
 import AddNewFab from '../ui/AddNewFab';
@@ -17,22 +17,10 @@ import AddNewFab from '../ui/AddNewFab';
 moment.locale('es');// Cambiamos el idioma al español con moment
 const localizer = momentLocalizer(moment) // or globalizeLocalizer
 
-
-const events = [{
-    title: "Cumpleaños De Adriana",
-    start: moment().toDate(),// New Data en moment
-    end: moment().add(1, 'hours').toDate(),
-    bgcolor: '#fafafa',
-    notes: 'Comprar el pastel',
-    user: {
-        _id: '12345',
-        name: 'Walter'
-    }
-}];
-
 const CalendarScreen = () => {
    
     const dispatch = useDispatch();
+    const { events } = useSelector(state => state.calendar)
 
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month') 
 
