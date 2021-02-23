@@ -21,7 +21,7 @@ const localizer = momentLocalizer(moment) // or globalizeLocalizer
 const events = [{
     title: "Cumpleaños De Adriana",
     start: moment().toDate(),// New Data en moment
-    end: moment().add(2, 'hours').toDate(),
+    end: moment().add(1, 'hours').toDate(),
     bgcolor: '#fafafa',
     notes: 'Comprar el pastel',
     user: {
