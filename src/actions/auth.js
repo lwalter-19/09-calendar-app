@@ -1,7 +1,11 @@
+import { fetchSinToken } from "../helpers/fetch"
 
 
-export const startLogin = (email, password) => {
+export const startLogin = async (email, password) => {
     return async (dispatch) => {
-        console.log(email, password);
+        const resp = await fetchSinToken('auth', { email, password}, 'POST');
+        const body = await resp.json();
+
+        console.log(body);
     }
 }
